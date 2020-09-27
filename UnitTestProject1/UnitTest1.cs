@@ -25,13 +25,15 @@ namespace UnitTestProject1
         {
             MoverTable moverTable = new MoverTable(10, 1000);
             
-            moverTable.MoverList[0].Move(-20);
+            moverTable.Move(0,-20);
 
+            Assert.AreEqual(true,moverTable.CanMove(0));
 
+            for (int i = 1; i < 10; i++)
+            {
+                Assert.AreEqual(false, moverTable.CanMove(i));
 
-
-
-
+            }
         }
     }
 }

@@ -27,5 +27,55 @@ namespace MoverReset
         {
             get { return _moverList; }
         }
+
+        public void Move(int moverId, int distance)
+        {
+            _moverList[moverId].Move(distance);
+        }
+
+        /// <summary>
+        /// Wenn zwischen der aktuellen Position und der Ziel Position kein anderer Mover steht dann kann kann der Mover sich bewegen
+        /// </summary>
+        /// <param name="moverId"></param>
+        /// <returns></returns>
+        public bool CanMove(int moverId)
+        {
+            var result = false;
+
+            var currentPos = _moverList[moverId].CurrentPositionAbsolute;
+            var targetPos = _moverList[moverId].TargetPosition;
+
+            var difference = currentPos - targetPos;
+
+            if (difference == 0)
+            {
+                result = false;
+            } 
+            else if (difference < 0)
+            {
+                //Negative difference means forward
+                //Check next mover position
+
+                var currentPosNextMover = _moverList[(moverId + 1) % _moverList.Count].CurrentPositionAbsolute;
+
+                if (currentPosNextMover > targetPos)
+                {
+                    result = true;
+                }
+            }
+            else if(difference > 0)
+            {
+                //Negative difference means forward
+                //Check previous mover position
+
+                var currentPosPreviousMover = _moverList[(moverId - 1)%_moverList.Count].CurrentPositionAbsolute;
+                if (currentPosPreviousMover < targetPos)
+                {
+                    result = true;
+                }
+            }
+
+            return result;
+        }
     }
 }

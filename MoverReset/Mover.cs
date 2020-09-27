@@ -9,13 +9,13 @@ namespace MoverReset
     public class Mover
     {
         private int _id;
-        private int _storedPosition;
+        private int _targetPosition;
         private int _currentPositionAbsolute;
 
         public Mover(int id)
         {
             _id = id;
-            _storedPosition = id;
+            _targetPosition = id;
             _currentPositionAbsolute = id;
         }
 
@@ -33,6 +33,12 @@ namespace MoverReset
         public int CurrentPositionAbsolute
         {
             get { return _currentPositionAbsolute; }
+        }
+
+        public int TargetPosition
+        {
+            get { return _targetPosition; }
+            set { _targetPosition = value; }
         }
 
         public void Move(int distance)
