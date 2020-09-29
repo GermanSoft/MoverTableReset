@@ -45,5 +45,10 @@ namespace MoverReset
         {
             _currentPositionAbsolute += distance;
         }
+
+        public void StorePositions()
+        {
+            _targetPosition = _currentPositionAbsolute;
+        }
     }
 }

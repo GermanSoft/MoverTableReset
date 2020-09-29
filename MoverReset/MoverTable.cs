@@ -77,5 +77,13 @@ namespace MoverReset
 
             return result;
         }
+
+        public void StorePositions()
+        {
+            foreach (var mover in _moverList)
+            {
+                mover.StorePositions();
+            }
+        }
     }
 }
